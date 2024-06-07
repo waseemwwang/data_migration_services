@@ -21,11 +21,13 @@ git clone ***
 # 依赖本机python3.12版本
 # 1. 安装poetry 
 pip install poetry
-# 2. 安装python包
+# 2. 开启虚拟环境
+poetry shell
+# 3. 安装python包
 poetry install
-# 3. 配置config.toml 配置文件
+# 4. 配置config.toml 配置文件
 vim src/config.toml
-# 4. 启动服务
+# 5. 启动服务
 cd src && python main.py
 ```
 
