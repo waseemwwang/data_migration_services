@@ -1,0 +1,15 @@
+[base]
+port = 8081
+reload = true
+
+
+[database]
+    [database.mysql]
+    host = "10.128.70.4"
+    port = 33061
+    user = "root"
+    password = 123456
+    database = "auth"
+    charset = "utf8mb4"
+
+
