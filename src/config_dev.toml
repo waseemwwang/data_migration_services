@@ -1,6 +1,7 @@
 [base]
 port = 8081
 reload = true
+log_path = "./logs"
 
 
 [database]

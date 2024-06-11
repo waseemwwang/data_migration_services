@@ -21,10 +21,13 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # 获取数据库连接字符串
-db_url = os.getenv('DB_URL', f"mysql+pymysql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}?charset={DB_CONFIG['charset']}")
+db_url = os.getenv(
+    "DB_URL",
+    f"mysql+pymysql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}?charset={DB_CONFIG['charset']}",
+)
 
 # 设置 sqlalchemy.url
-config.set_main_option('sqlalchemy.url', db_url)
+config.set_main_option("sqlalchemy.url", db_url)
 
 # add your model's MetaData object here
 # for 'autogenerate' support

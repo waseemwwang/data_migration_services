@@ -37,5 +37,9 @@ class GlobalConfig:
     def get_database_mysql(cls):
         return global_config.get("database", {}).get("mysql", {})
 
+    @classmethod
+    def get_log_path(cls):
+        return global_config.get("base", {}).get("log_path", "logs")
+
 
 global_config_instance = GlobalConfig()
