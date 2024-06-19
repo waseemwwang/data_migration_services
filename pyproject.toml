@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "auth"
+name = "supplier_data_migration_tool"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "供应商数据迁移工具"
+authors = ["waseemw@wicresoft.com"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -12,9 +12,10 @@ sqlalchemy = "^2.0.30"
 pyjwt = "^2.8.0"
 toml = "^0.10.2"
 uvicorn = "^0.30.1"
-fastapi = "^0.111.0"
+fastapi = {extras = ["all"], version = "^0.111.0"}
 loguru = "^0.7.2"
 alembic = "^1.13.1"
+pandas = "^2.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
