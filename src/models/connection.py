@@ -2,11 +2,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from config import GlobalConfig
-from loguru import logger
+from logger import log
 
 # 数据库连接配置
 DB_CONFIG = GlobalConfig.get_database_mysql()
-logger.debug(f"db config {DB_CONFIG}")
+log.debug(f"db config {DB_CONFIG}")
 
 # 创建数据库连接池
 engine = create_engine(

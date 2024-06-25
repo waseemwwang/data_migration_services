@@ -7,8 +7,6 @@ class TimestampMixin:
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at = Column(DateTime, nullable=True)
-    migrate_version_id = Column(Integer, nullable=False, comment="数据版本")
-
 
 
 # class MigrateVersion(Base, TimestampMixin):

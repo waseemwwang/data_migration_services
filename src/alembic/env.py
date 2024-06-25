@@ -7,7 +7,8 @@ from sqlalchemy import pool
 from alembic import context
 import sys
 from os.path import abspath, dirname
-from models.connection import Base, DB_CONFIG
+from models.connection import DB_CONFIG
+from logger import log
 
 sys.path.insert(0, dirname(dirname(abspath(__file__))))
 
@@ -28,15 +29,16 @@ db_url = os.getenv(
 
 # 设置 sqlalchemy.url
 config.set_main_option("sqlalchemy.url", db_url)
+log.info(f"db_url: {log}")
 
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from models.user import User
+from models.chatbot_auth import Base
 
 target_metadata = Base.metadata
-
+log.info(f"target_metadata: {target_metadata}")
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
@@ -56,6 +58,7 @@ def run_migrations_offline() -> None:
 
     """
     url = config.get_main_option("sqlalchemy.url")
+    log.info(url)
     context.configure(
         url=url,
         target_metadata=target_metadata,

@@ -1,0 +1,32 @@
+2024-06-24 14:19:26.897 | DEBUG    | models.connection:<module>:9 - db config {'host': '10.128.70.4', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:19:26.973 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:20:48.663 | DEBUG    | models.connection:<module>:9 - db config {'host': '10.128.70.4', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:20:48.678 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:20:48.684 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 14:21:50.173 | DEBUG    | models.connection:<module>:9 - db config {'host': '10.128.70.4', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:21:50.186 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:21:50.190 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 14:22:13.091 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:22:13.105 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:22:13.109 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 14:29:34.431 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:29:34.488 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:29:34.493 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 14:31:27.770 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:31:27.792 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:31:27.797 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 14:31:40.717 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'auth', 'charset': 'utf8mb4'}
+2024-06-24 14:31:40.739 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 14:31:40.744 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 15:13:51.484 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'spg_helpdesk_chatbot', 'charset': 'utf8mb4'}
+2024-06-24 15:13:51.604 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 15:13:51.614 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 15:14:16.964 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'spg_helpdesk_chatbot', 'charset': 'utf8mb4'}
+2024-06-24 15:14:17.015 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 15:14:17.025 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 15:14:20.746 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'spg_helpdesk_chatbot', 'charset': 'utf8mb4'}
+2024-06-24 15:14:20.787 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 15:14:20.795 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
+2024-06-24 15:14:54.731 | DEBUG    | models.connection:<module>:9 - db config {'host': '127.0.0.1', 'port': 33061, 'user': 'root', 'password': 123456, 'database': 'spg_helpdesk_chatbot', 'charset': 'utf8mb4'}
+2024-06-24 15:14:54.778 | INFO     | env_py:<module>:32 - db_url: <loguru.logger handlers=[(id=1, level=10, sink='./logs/2024-06-24_debug.log'), (id=2, level=20, sink='./logs/2024-06-24_info.log'), (id=3, level=40, sink='./logs/2024-06-24_error.log')]>
+2024-06-24 15:14:54.786 | INFO     | env_py:<module>:41 - target_metadata: MetaData()
