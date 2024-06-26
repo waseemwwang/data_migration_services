@@ -7,8 +7,8 @@ from sqlalchemy import pool
 from alembic import context
 import sys
 from os.path import abspath, dirname
-from models.connection import DB_CONFIG
-from logger import log
+from config import GlobalConfig
+from utils.logger import log
 
 sys.path.insert(0, dirname(dirname(abspath(__file__))))
 
@@ -21,10 +21,12 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+db_base_config = GlobalConfig.get_database_mysql_by_type()
+
 # 获取数据库连接字符串
 db_url = os.getenv(
     "DB_URL",
-    f"mysql+pymysql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}?charset={DB_CONFIG['charset']}",
+    f"mysql+pymysql://{db_base_config['user']}:{db_base_config['password']}@{db_base_config['host']}:{db_base_config['port']}/{db_base_config['database']}?charset={db_base_config['charset']}",
 )
 
 # 设置 sqlalchemy.url

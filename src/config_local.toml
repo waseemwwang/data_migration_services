@@ -6,11 +6,24 @@ log_path = "./logs"
 
 [database]
     [database.mysql]
-    host = "127.0.0.1"
-    port = 33061
-    user = "root"
-    password = 123456
-    database = "spg_helpdesk_chatbot"
-    charset = "utf8mb4"
+        [database.mysql.base]
+        host = "127.0.0.1"
+        port = 33061
+        user = "root"
+        password = 123456
+        database = "spg_helpdesk_chatbot"
+        charset = "utf8mb4"
+        pool_size = 30
+        max_overflow = 40
+
+        [database.mysql.chatbot]
+        host = "172.208.68.94"
+        port = 3306
+        user = "root"
+        password = "Labixiaoxin888"
+        database = "dev"
+        charset = "utf8mb4"
+        pool_size = 10
+        max_overflow = 20
 
 

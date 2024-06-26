@@ -1,6 +1,18 @@
 import datetime
-from sqlalchemy import Column, Integer, String, Float, DateTime, DECIMAL, Enum, ForeignKey, VARBINARY, Text, Index
-from models.connection import Base
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Float,
+    DateTime,
+    DECIMAL,
+    Enum,
+    ForeignKey,
+    VARBINARY,
+    Text,
+    Index,
+)
+from models.database import Base
 
 
 class TimestampMixin:
@@ -20,16 +32,26 @@ class TimestampMixin:
 
 
 class Project(Base, TimestampMixin):
-    __tablename__ = 'Project'
+    __tablename__ = "Project"
 
     project_id = Column(Integer, primary_key=True, autoincrement=True)
     project_name = Column(String(255), nullable=False, primary_key=True)
     parent_id = Column(Integer, nullable=False, default=0)
     outsource_id = Column(VARBINARY(255), nullable=True)
-    supplier_company_id = Column(Integer, ForeignKey('SupplierCompany.supplier_company_id'), nullable=True, index=True)
+    supplier_company_id = Column(
+        Integer,
+        ForeignKey("SupplierCompany.supplier_company_id"),
+        nullable=True,
+        index=True,
+    )
     source_code = Column(Integer, nullable=True)
     project_owner_id = Column(Integer, nullable=True, index=True)
-    project_owner_name = Column(String(255), ForeignKey('ProjectOwner.project_owner_name'), nullable=True, index=True)
+    project_owner_name = Column(
+        String(255),
+        ForeignKey("ProjectOwner.project_owner_name"),
+        nullable=True,
+        index=True,
+    )
     project_model = Column(String(255), nullable=True)
     project_location = Column(String(255), nullable=True)
     project_kick_off_date = Column(DateTime, nullable=True)
@@ -37,7 +59,8 @@ class Project(Base, TimestampMixin):
 
 class ProjectOwner(Base, TimestampMixin):
     """项目负责人信息"""
-    __tablename__ = 'ProjectOwner'
+
+    __tablename__ = "ProjectOwner"
 
     project_owner_id = Column(Integer, primary_key=True, autoincrement=True)
     project_owner_name = Column(String(255), nullable=True, index=True)
@@ -47,29 +70,47 @@ class ProjectOwner(Base, TimestampMixin):
 
     # 定义联合索引
     __table_args__ = (
-        Index('project_owner_id', 'project_owner_id', 'project_owner_name'),
+        Index("project_owner_id", "project_owner_id", "project_owner_name"),
     )
 
 
 class Contract(Base, TimestampMixin):
     """合同"""
-    __tablename__ = 'Contract'
+
+    __tablename__ = "Contract"
 
     c_id = Column(Integer, primary_key=True, autoincrement=True)
     contract_type = Column(String(100), nullable=True)
     effective_date = Column(DateTime, nullable=True)
     expiration_date = Column(DateTime, nullable=True)
     contract_id = Column(String(100), nullable=True, index=True)
-    project_id = Column(Integer, ForeignKey('Project.project_id'), nullable=True, index=True)
+    project_id = Column(
+        Integer, ForeignKey("Project.project_id"), nullable=True, index=True
+    )
 
 
 class ContractorVendor(Base, TimestampMixin):
     """员工合同"""
-    __tablename__ = 'ContractorVendor'
+
+    __tablename__ = "ContractorVendor"
 
     purchase_order_vendor_id = Column(Integer, primary_key=True, autoincrement=True)
-    purchase_order_bill_flow_id = Column(Integer, ForeignKey('PurchaseOrderBillFlow.purchase_order_bill_flow_id', ondelete='CASCADE', onupdate='CASCADE'), nullable=True, index=True)
-    vendor_id = Column(Integer, ForeignKey('Vendor.vendor_id', ondelete='CASCADE', onupdate='CASCADE'), nullable=True, index=True)
+    purchase_order_bill_flow_id = Column(
+        Integer,
+        ForeignKey(
+            "PurchaseOrderBillFlow.purchase_order_bill_flow_id",
+            ondelete="CASCADE",
+            onupdate="CASCADE",
+        ),
+        nullable=True,
+        index=True,
+    )
+    vendor_id = Column(
+        Integer,
+        ForeignKey("Vendor.vendor_id", ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=True,
+        index=True,
+    )
     sub_project_name = Column(String(255), nullable=True)
     main_project_name = Column(String(255), nullable=True)
     project_id = Column(Integer, nullable=True)
@@ -89,18 +130,24 @@ class ContractorVendor(Base, TimestampMixin):
 
 class ProjectContract(Base, TimestampMixin):
     """项目合同关联表"""
-    __tablename__ = 'ProjectContract'
+
+    __tablename__ = "ProjectContract"
 
     project_contract_id = Column(Integer, primary_key=True, autoincrement=True)
-    contract_id = Column(String(255), ForeignKey('Contract.contract_id'), nullable=True, index=True)
+    contract_id = Column(
+        String(255), ForeignKey("Contract.contract_id"), nullable=True, index=True
+    )
     c_id = Column(Integer, nullable=True)
     project_name = Column(String(255), nullable=True)
-    project_id = Column(Integer, ForeignKey('Project.project_id'), nullable=True, index=True)
+    project_id = Column(
+        Integer, ForeignKey("Project.project_id"), nullable=True, index=True
+    )
 
 
 class Vendor(Base, TimestampMixin):
     """员工表"""
-    __tablename__ = 'Vendor'
+
+    __tablename__ = "Vendor"
 
     vendor_id = Column(Integer, primary_key=True, autoincrement=True)
     vendor_english_name = Column(String(255), nullable=True)
@@ -110,24 +157,36 @@ class Vendor(Base, TimestampMixin):
     title = Column(String(255), nullable=True)
     location = Column(String(255), nullable=True)
     vendor_type = Column(String(255), nullable=True)
-    assignment_end_date = Column(DateTime, nullable=True, comment='alias_expiration_date')
-    maximum_end_date = Column(DateTime, nullable=True, comment='alias_max_expiration_date')
+    assignment_end_date = Column(
+        DateTime, nullable=True, comment="alias_expiration_date"
+    )
+    maximum_end_date = Column(
+        DateTime, nullable=True, comment="alias_max_expiration_date"
+    )
     vendor_onboarding_date = Column(DateTime, nullable=True)
     vendor_hourly_rate = Column(DECIMAL(10, 2), nullable=True)
-    vendor_rate_currency_information = Column(String(255), nullable=True, comment='Vendor Rate')
+    vendor_rate_currency_information = Column(
+        String(255), nullable=True, comment="Vendor Rate"
+    )
     supplier_company_id = Column(Integer, nullable=True)
 
 
 class VendorLeaveOvertime(Base, TimestampMixin):
     """员工出勤表"""
-    __tablename__ = 'VendorLeaveOvertime'
+
+    __tablename__ = "VendorLeaveOvertime"
 
     vendor_leave_overtime_id = Column(Integer, primary_key=True, autoincrement=True)
-    vendor_id = Column(Integer, ForeignKey('Vendor.vendor_id', ondelete='CASCADE', onupdate='CASCADE'), nullable=True, index=True)
+    vendor_id = Column(
+        Integer,
+        ForeignKey("Vendor.vendor_id", ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=True,
+        index=True,
+    )
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
     hours = Column(Float, nullable=True)
-    type = Column(String(255), nullable=True, comment='leave/overtime')
+    type = Column(String(255), nullable=True, comment="leave/overtime")
     created_time = Column(DateTime, nullable=True)
     sub_project_name = Column(String(255), nullable=True, index=True)
     main_project_name = Column(String(255), nullable=True)
@@ -136,25 +195,36 @@ class VendorLeaveOvertime(Base, TimestampMixin):
 
 class ProjectVendor(Base, TimestampMixin):
     """项目内员工信息"""
-    __tablename__ = 'ProjectVendor'
+
+    __tablename__ = "ProjectVendor"
 
     project_vendor_id = Column(Integer, primary_key=True, autoincrement=True)
-    vendor_id = Column(Integer, ForeignKey('Vendor.vendor_id'), nullable=True, index=True)
-    sub_project_name = Column(String(255), ForeignKey('Project.project_name'), nullable=True, index=True)
+    vendor_id = Column(
+        Integer, ForeignKey("Vendor.vendor_id"), nullable=True, index=True
+    )
+    sub_project_name = Column(
+        String(255), ForeignKey("Project.project_name"), nullable=True, index=True
+    )
     sub_project_id = Column(Integer, nullable=True)
     main_project_name = Column(String(255), nullable=True)
-    main_project_id = Column(Integer, ForeignKey('Project.project_id'), nullable=True)
+    main_project_id = Column(Integer, ForeignKey("Project.project_id"), nullable=True)
 
 
 class ProjectCostForecast(Base, TimestampMixin):
     """项目支出预算"""
-    __tablename__ = 'ProjectCostForecast'
+
+    __tablename__ = "ProjectCostForecast"
 
     project_cost_forecast = Column(Integer, primary_key=True, autoincrement=True)
     po_number = Column(String(255), nullable=True)
     cost_forecasting_month = Column(DateTime, nullable=True)
     cost_amount = Column(DECIMAL(10, 2), nullable=True)
-    project_name = Column(String(255), ForeignKey('Project.project_name', ondelete='CASCADE', onupdate='CASCADE'), nullable=True, index=True)
+    project_name = Column(
+        String(255),
+        ForeignKey("Project.project_name", ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=True,
+        index=True,
+    )
     vendor_rate = Column(DECIMAL(10, 2), nullable=True)
     payment_model = Column(String(255), nullable=True)
     currency_unit = Column(String(255), nullable=True)
@@ -162,7 +232,8 @@ class ProjectCostForecast(Base, TimestampMixin):
 
 class CurrencyExchangeRate(Base, TimestampMixin):
     """汇率表"""
-    __tablename__ = 'CurrencyExchangeRate'
+
+    __tablename__ = "CurrencyExchangeRate"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     currency_exchange_rate = Column(DECIMAL(10, 4), nullable=True)
@@ -173,18 +244,20 @@ class CurrencyExchangeRate(Base, TimestampMixin):
 
 class Roles(Base, TimestampMixin):
     """权限"""
-    __tablename__ = 'Roles'
+
+    __tablename__ = "Roles"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     alias = Column(String(60), nullable=False, index=True)
     name = Column(String(60), nullable=False, index=True)
-    role_type = Column(Enum('admin', 'project_owner', 'ventor'), nullable=False)
+    role_type = Column(Enum("admin", "project_owner", "ventor"), nullable=False)
     active = Column(Integer, nullable=False, default=1)
 
 
 class SupplierCompany(Base, TimestampMixin):
     """供应商公司"""
-    __tablename__ = 'SupplierCompany'
+
+    __tablename__ = "SupplierCompany"
 
     supplier_company_id = Column(Integer, primary_key=True, autoincrement=True)
     supplier_company_name = Column(String(255), nullable=True)
@@ -195,39 +268,47 @@ class SupplierCompany(Base, TimestampMixin):
 
 class SupplierNumber(Base, TimestampMixin):
     """供应商编号"""
-    __tablename__ = 'SupplierNumber'
+
+    __tablename__ = "SupplierNumber"
 
     supplier_number_id = Column(Integer, primary_key=True, autoincrement=True)
     supplier_company_id = Column(Integer, nullable=True)
     supplier_company_name = Column(String(255), nullable=True)
     microsoft_company_code = Column(String(255), nullable=True)
-    supplier_number = Column(String(255), nullable=False, comment='Vendor Number')
+    supplier_number = Column(String(255), nullable=False, comment="Vendor Number")
     microsoft_company_code_description = Column(String(255), nullable=True)
 
 
 class PurchaseOrder(Base, TimestampMixin):
     """采购单"""
-    __tablename__ = 'PurchaseOrder'
+
+    __tablename__ = "PurchaseOrder"
 
     purchase_order_id = Column(Integer, primary_key=True, autoincrement=True)
     po_number = Column(String(100), nullable=True)
     original_amount = Column(DECIMAL(10, 2), nullable=True)
     payable_amount = Column(DECIMAL(10, 2), nullable=True)
     open_amount = Column(DECIMAL(10, 2), nullable=True)
-    project_name = Column(String(255), ForeignKey('Project.project_name', ondelete='CASCADE', onupdate='CASCADE'), nullable=True, index=True)
-    payment_model = Column(String(255), nullable=True, comment='Milestone;Fixed price')
-    po_status = Column(String(255), nullable=True, comment='Active Inactive')
+    project_name = Column(
+        String(255),
+        ForeignKey("Project.project_name", ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=True,
+        index=True,
+    )
+    payment_model = Column(String(255), nullable=True, comment="Milestone;Fixed price")
+    po_status = Column(String(255), nullable=True, comment="Active Inactive")
     project_id = Column(Integer, nullable=True)
     total_invoiced_amount = Column(DECIMAL(10, 2), nullable=True)
     po_start_date = Column(DateTime, nullable=True)
     po_end_date = Column(DateTime, nullable=True)
     po_duration_months = Column(String(255), nullable=True)
-    currency_unit = Column(String(255), nullable=True, comment='Currency unit')
+    currency_unit = Column(String(255), nullable=True, comment="Currency unit")
 
 
 class PurchaseOrderBillFlow(Base, TimestampMixin):
     """采购单票据流"""
-    __tablename__ = 'PurchaseOrderBillFlow'
+
+    __tablename__ = "PurchaseOrderBillFlow"
 
     purchase_order_bill_flow_id = Column(Integer, primary_key=True, autoincrement=True)
     po_monthly_amount = Column(DECIMAL(10, 2), nullable=True)
@@ -242,12 +323,13 @@ class PurchaseOrderBillFlow(Base, TimestampMixin):
     vacations_amount = Column(DECIMAL(10, 2), nullable=True)
     sub_project_name = Column(String(255), index=True, nullable=True)
     main_project_name = Column(String(255), nullable=True)
-    currency_unit = Column(String(255), nullable=True, comment='Currency unit')
+    currency_unit = Column(String(255), nullable=True, comment="Currency unit")
 
 
 class PurchaseOrder_IO_CC(Base, TimestampMixin):
     """采购单 io cc 信息"""
-    __tablename__ = 'PurchaseOrder_IO_CC'
+
+    __tablename__ = "PurchaseOrder_IO_CC"
 
     project_io_cc_payment_id = Column(Integer, primary_key=True, autoincrement=True)
     io = Column(String(255), nullable=True)
@@ -258,12 +340,13 @@ class PurchaseOrder_IO_CC(Base, TimestampMixin):
     project_name = Column(String(255), nullable=True)
     amount = Column(DECIMAL(10, 2), nullable=True)
     payment_data = Column(DateTime, nullable=True)
-    currency_unit = Column(String(255), nullable=True, comment='Currency unit')
+    currency_unit = Column(String(255), nullable=True, comment="Currency unit")
 
 
 class PurchaseOrder_Invoice(Base, TimestampMixin):
     """采购单发票"""
-    __tablename__ = 'PurchaseOrder_Invoice'
+
+    __tablename__ = "PurchaseOrder_Invoice"
 
     purchase_order_invoice_id = Column(Integer, primary_key=True, autoincrement=True)
     payment_data = Column(DateTime, nullable=True)
@@ -271,5 +354,4 @@ class PurchaseOrder_Invoice(Base, TimestampMixin):
     purchase_order_id = Column(Integer, nullable=True)
     po_number = Column(Integer, nullable=True)
     project_name = Column(String(255), nullable=True)
-    currency_unit = Column(String(255), nullable=True, comment='Currency unit')
-
+    currency_unit = Column(String(255), nullable=True, comment="Currency unit")

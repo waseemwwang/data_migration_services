@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 pymysql = "^1.1.1"
-sqlalchemy = "^2.0.30"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.31"}
 pyjwt = "^2.8.0"
 toml = "^0.10.2"
 uvicorn = "^0.30.1"
@@ -17,6 +17,10 @@ loguru = "^0.7.2"
 alembic = "^1.13.1"
 pandas = "^2.2.2"
 cryptography = "^42.0.8"
+typer = "^0.12.3"
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.7"
+asyncmy = "^0.2.9"
 
 
 [tool.poetry.group.dev.dependencies]

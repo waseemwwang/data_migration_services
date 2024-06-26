@@ -1,3 +1,4 @@
+import sys
 from loguru import logger
 from config import GlobalConfig
 import os
@@ -41,5 +42,7 @@ logger.add(
     retention="10 days",
     compression="zip",
 )
+
+logger.add(sys.stdout, level="DEBUG")
 
 log = logger
